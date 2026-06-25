@@ -70,14 +70,6 @@ function NavList({
   );
 }
 
-function Footer() {
-  return (
-    <div className="px-4 py-3 text-[11px] text-neutral-400">
-      v1.0 · Powered by Conquerra
-    </div>
-  );
-}
-
 export function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -94,7 +86,6 @@ export function Sidebar() {
         <div className="flex-1 overflow-y-auto py-2">
           <NavList pathname={pathname} />
         </div>
-        <Footer />
       </aside>
 
       {/* Mobile top bar — < md */}
@@ -142,7 +133,6 @@ export function Sidebar() {
                 onNavigate={() => setOpen(false)}
               />
             </div>
-            <Footer />
           </aside>
         </div>
       )}
