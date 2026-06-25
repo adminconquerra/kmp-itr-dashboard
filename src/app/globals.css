@@ -63,8 +63,9 @@ body {
 }
 
 /* Belt-and-suspenders: lock the page to viewport width on mobile so a
-   stray wide child never triggers horizontal scroll. Applied to <body>
-   only (not <html>) to keep iOS address-bar collapse working. */
+   stray wide child never triggers horizontal scroll. Both html and body
+   needed — iOS WebKit ignores `overflow-x: hidden` on body alone. */
+html,
 body {
   overflow-x: hidden;
 }
