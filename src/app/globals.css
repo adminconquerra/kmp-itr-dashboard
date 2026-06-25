@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand — Navy (sidebar, KPI hero numbers, large emphasis) */
+  --color-navy-50:  #f0f4f8;
+  --color-navy-100: #d9e2ec;
+  --color-navy-200: #bcccdc;
+  --color-navy-300: #9fb3c8;
+  --color-navy-400: #627d98;
+  --color-navy-500: #486581;
+  --color-navy-600: #334e68;
+  --color-navy-700: #1e3a5f;
+  --color-navy-800: #14304a;
+  --color-navy-900: #0f2a47;
+  --color-navy-950: #0a1e36;
+
+  /* Brand — Cyan/Blue (active states, accents, primary buttons) */
+  --color-brand-50:  #f0f9ff;
+  --color-brand-100: #e0f2fe;
+  --color-brand-200: #bae6fd;
+  --color-brand-300: #7dd3fc;
+  --color-brand-400: #38bdf8;
+  --color-brand-500: #1b9cd8;
+  --color-brand-600: #0284c7;
+  --color-brand-700: #0369a1;
+  --color-brand-800: #075985;
+  --color-brand-900: #0c4a6e;
+
+  /* Semantic — Success */
+  --color-success-50:  #f0fdf4;
+  --color-success-500: #16a34a;
+  --color-success-700: #15803d;
+
+  /* Semantic — Warning */
+  --color-warning-50:  #fffbeb;
+  --color-warning-500: #d97706;
+  --color-warning-700: #b45309;
+
+  /* Semantic — Danger */
+  --color-danger-50:  #fef2f2;
+  --color-danger-500: #dc2626;
+  --color-danger-700: #b91c1c;
+
+  /* Semantic — Info */
+  --color-info-50:  #eff6ff;
+  --color-info-500: #2563eb;
+  --color-info-700: #1d4ed8;
+
+  /* Sans stack — Inter wires in via app/layout.tsx (next/font) */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Hover shadow for interactive cards (spec: shadow-card-hover) */
+  --shadow-card-hover:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(15, 42, 71, 0.06);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #fcfcfd; /* neutral-25 — page background */
+  color: #111827;      /* neutral-900 — primary text */
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
