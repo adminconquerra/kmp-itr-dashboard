@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
 import { getClientData } from '@/lib/data';
+
+export const dynamic = 'force-dynamic';
 import {
   awaitingCall,
   computeFunnel,

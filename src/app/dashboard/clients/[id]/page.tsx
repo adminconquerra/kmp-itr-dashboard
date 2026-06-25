@@ -8,6 +8,8 @@ import { Card } from '@/components/Card';
 import { StatusBadge } from '@/components/StatusBadge';
 import { Timeline, type TimelineEvent } from '@/components/Timeline';
 
+export const dynamic = 'force-dynamic';
+
 type EventDef = {
   field: keyof Client;
   label: string;

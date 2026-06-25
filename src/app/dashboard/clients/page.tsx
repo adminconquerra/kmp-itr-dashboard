@@ -1,6 +1,8 @@
 import { getClientData } from '@/lib/data';
 import { ClientTable } from '@/components/ClientTable';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ClientsPage() {
   const { clients } = await getClientData();
 
