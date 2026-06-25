@@ -23,6 +23,14 @@ export async function getClientData(): Promise<ClientData> {
   const response = await fetch(url, {
     headers: { 'x-api-key': apiKey },
     cache: 'no-store',
+    // Fail fast if the n8n webhook is unreachable or slow; otherwise the
+    // server function holds the page open until Vercel's gateway 504s.
+    signal: AbortSignal.timeout(15_000),
+  }).catch((err: unknown) => {
+    if (err instanceof DOMException && err.name === 'TimeoutError') {
+      throw new Error('Data API timed out after 15s');
+    }
+    throw err;
   });
 
   if (!response.ok) {
