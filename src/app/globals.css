@@ -61,3 +61,10 @@ body {
   color: #111827;      /* neutral-900 — primary text */
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
+
+/* Belt-and-suspenders: lock the page to viewport width on mobile so a
+   stray wide child never triggers horizontal scroll. Applied to <body>
+   only (not <html>) to keep iOS address-bar collapse working. */
+body {
+  overflow-x: hidden;
+}
