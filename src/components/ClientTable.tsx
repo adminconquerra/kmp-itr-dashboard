@@ -152,7 +152,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
       </div>
 
       {/* Table */}
-      <div className="w-full min-w-0 max-w-full overflow-x-auto">
+      <div className="relative w-full min-w-0 max-w-full overflow-x-auto">
         <table className="w-full border-collapse">
           <thead className="bg-neutral-50">
             <tr className="border-b border-neutral-200">
