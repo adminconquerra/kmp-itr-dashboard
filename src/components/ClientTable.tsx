@@ -96,7 +96,7 @@ export function ClientTable({ clients }: { clients: Client[] }) {
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border border-neutral-200 bg-white">
+    <div className="min-w-0 overflow-hidden rounded-lg border border-neutral-200 bg-white">
       {/* Filters */}
       <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center">
         <div className="relative w-full sm:max-w-[40%] sm:flex-1">

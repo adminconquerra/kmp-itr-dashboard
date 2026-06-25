@@ -90,7 +90,7 @@ export default async function DashboardPage() {
       </Card>
 
       {/* Client table */}
-      <section className="flex flex-col gap-3">
+      <section className="flex min-w-0 flex-col gap-3">
         <h2 className="text-[11px] font-semibold uppercase tracking-[0.06em] text-neutral-500">
           All Clients
         </h2>
