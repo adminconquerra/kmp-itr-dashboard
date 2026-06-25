@@ -24,6 +24,8 @@ export type Client = {
   notes: string;
   oneDriveFolderId: string;
   oneDriveFileId: string;
+  oneDriveFolderUrl: string;
+  oneDriveFileUrl: string;
 };
 
 export type ClientStatus =

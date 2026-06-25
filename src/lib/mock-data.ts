@@ -46,6 +46,8 @@ function client(fields: Required & Partial<Client>): Client {
     notes: '',
     oneDriveFolderId: `01FOLDER${fields.srNo.toString().padStart(4, '0')}`,
     oneDriveFileId: `01FILE${fields.srNo.toString().padStart(4, '0')}`,
+    oneDriveFolderUrl: '',
+    oneDriveFileUrl: '',
     ...fields,
   };
 }

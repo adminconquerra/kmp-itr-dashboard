@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Folder, FileText, User, Receipt } from 'lucide-react';
 import type { Client } from '@/lib/types';
 import { getClientData } from '@/lib/data';
 import { formatCurrency, formatDate, isCompleted, parseDate } from '@/lib/utils';
@@ -87,6 +87,45 @@ function DetailRow({ label, children }: DetailRowProps) {
   );
 }
 
+function ExternalLinkRow({
+  url,
+  label,
+  icon,
+}: {
+  url: string | null | undefined;
+  label: string;
+  icon: React.ReactNode;
+}) {
+  if (!url) {
+    return (
+      <div className="flex h-9 items-center gap-2 rounded-md border border-dashed border-neutral-200 px-3 text-sm text-neutral-400">
+        {icon}
+        <span>{label} (not available)</span>
+      </div>
+    );
+  }
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex h-9 items-center gap-2 rounded-md border border-neutral-300 bg-white px-3 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-neutral-50"
+    >
+      {icon}
+      <span>{label}</span>
+      <ExternalLink size={12} strokeWidth={1.5} className="ml-auto text-neutral-400" />
+    </a>
+  );
+}
+
+function xeroContactUrl(id: string): string | null {
+  return id ? `https://go.xero.com/Contacts/View/${id}` : null;
+}
+
+function xeroInvoiceUrl(id: string): string | null {
+  return id ? `https://go.xero.com/AccountsReceivable/View.aspx?InvoiceID=${id}` : null;
+}
+
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.06em] text-neutral-500">
@@ -163,11 +202,6 @@ export default async function ClientDetailPage({
           <Card>
             <SectionLabel>Invoice</SectionLabel>
             <dl className="flex flex-col divide-y divide-neutral-100">
-              <DetailRow label="ID">
-                <span className="tabular-nums">
-                  {client.invoiceId || '—'}
-                </span>
-              </DetailRow>
               <DetailRow label="Created">
                 {formatDate(client.invoiceCreated)}
               </DetailRow>
@@ -189,6 +223,13 @@ export default async function ClientDetailPage({
                 {paymentDisplay(client.paymentReceived)}
               </DetailRow>
             </dl>
+            <div className="mt-4">
+              <ExternalLinkRow
+                url={xeroInvoiceUrl(client.invoiceId)}
+                label="Open invoice in Xero"
+                icon={<Receipt size={14} strokeWidth={1.5} />}
+              />
+            </div>
           </Card>
 
           {/* Income & Reference */}
@@ -201,10 +242,14 @@ export default async function ClientDetailPage({
               <DetailRow label="Reference">
                 {client.reference || '—'}
               </DetailRow>
-              <DetailRow label="Contact ID">
-                <span className="tabular-nums">{client.contactId}</span>
-              </DetailRow>
             </dl>
+            <div className="mt-4">
+              <ExternalLinkRow
+                url={xeroContactUrl(client.contactId)}
+                label="Open contact in Xero"
+                icon={<User size={14} strokeWidth={1.5} />}
+              />
+            </div>
           </Card>
 
           {/* Notes — only if present */}
@@ -220,18 +265,18 @@ export default async function ClientDetailPage({
           {/* OneDrive */}
           <Card>
             <SectionLabel>OneDrive</SectionLabel>
-            <dl className="flex flex-col divide-y divide-neutral-100">
-              <DetailRow label="Folder ID">
-                <span className="break-all font-mono text-xs text-neutral-700">
-                  {client.oneDriveFolderId || '—'}
-                </span>
-              </DetailRow>
-              <DetailRow label="File ID">
-                <span className="break-all font-mono text-xs text-neutral-700">
-                  {client.oneDriveFileId || '—'}
-                </span>
-              </DetailRow>
-            </dl>
+            <div className="flex flex-col gap-2">
+              <ExternalLinkRow
+                url={client.oneDriveFolderUrl}
+                label="Open folder"
+                icon={<Folder size={14} strokeWidth={1.5} />}
+              />
+              <ExternalLinkRow
+                url={client.oneDriveFileUrl}
+                label="Open file"
+                icon={<FileText size={14} strokeWidth={1.5} />}
+              />
+            </div>
           </Card>
         </div>
       </div>
