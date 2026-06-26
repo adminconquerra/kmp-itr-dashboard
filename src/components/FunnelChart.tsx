@@ -6,8 +6,10 @@ export type FunnelStage = { label: string; count: number };
  * truncation on long stage names and reads cleanly at any viewport width.
  *
  * The first stage's count is the 100% reference — every subsequent bar is a
- * fraction of that total. The right-hand percentage is a different number:
- * stage count / previous stage count (how many flowed through from above).
+ * fraction of that total, and the right-hand label reads `count of total`
+ * so the proportion is always legible without depending on stage-to-stage
+ * conversion math (which breaks for "currently in progress" buckets that
+ * shrink as work advances).
  */
 export function FunnelChart({ stages }: { stages: FunnelStage[] }) {
   if (stages.length === 0) return null;
@@ -17,9 +19,7 @@ export function FunnelChart({ stages }: { stages: FunnelStage[] }) {
     <div className="flex flex-col gap-4">
       {stages.map((stage, i) => {
         const widthPct = total === 0 ? 0 : (stage.count / total) * 100;
-        const prev = i === 0 ? null : stages[i - 1].count;
-        const prevPct =
-          prev && prev > 0 ? Math.round((stage.count / prev) * 100) : null;
+        const isFirst = i === 0;
 
         return (
           <div key={stage.label} className="flex flex-col gap-2">
@@ -27,10 +27,10 @@ export function FunnelChart({ stages }: { stages: FunnelStage[] }) {
               <span className="text-sm font-semibold text-neutral-700">
                 {stage.label}
               </span>
-              <div className="flex shrink-0 gap-2 text-sm tabular-nums">
+              <div className="flex shrink-0 gap-1.5 text-sm tabular-nums">
                 <span className="text-neutral-700">{stage.count}</span>
-                {prevPct !== null && (
-                  <span className="text-neutral-400">{prevPct}%</span>
+                {!isFirst && (
+                  <span className="text-neutral-400">of {total}</span>
                 )}
               </div>
             </div>
