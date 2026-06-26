@@ -61,7 +61,11 @@ export function computeFunnel(clients: Client[]): FunnelStage[] {
     },
     {
       label: 'ITR In Progress',
-      count: clients.filter((c) => isCompleted(c.itrInProgress)).length,
+      // Only currently-in-progress: lodged clients drop out of this count
+      // and only appear in the Lodged stage below.
+      count: clients.filter(
+        (c) => isCompleted(c.itrInProgress) && !isCompleted(c.lodged),
+      ).length,
     },
     {
       label: 'Lodged',
