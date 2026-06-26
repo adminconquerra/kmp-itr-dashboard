@@ -11,7 +11,7 @@ export type Kpis = {
   replies: number;
   formsSubmitted: number;
   invoicesPaid: number;
-  onboardingComplete: number;
+  lodged: number;
 };
 
 export function computeKpis(clients: Client[]): Kpis {
@@ -21,9 +21,7 @@ export function computeKpis(clients: Client[]): Kpis {
     replies: clients.filter((c) => isCompleted(c.replied)).length,
     formsSubmitted: clients.filter((c) => isCompleted(c.formSubmitted)).length,
     invoicesPaid: clients.filter((c) => isCompleted(c.paymentReceived)).length,
-    onboardingComplete: clients.filter((c) =>
-      isCompleted(c.onboardingFormSubmitted),
-    ).length,
+    lodged: clients.filter((c) => isCompleted(c.lodged)).length,
   };
 }
 
@@ -60,6 +58,14 @@ export function computeFunnel(clients: Client[]): FunnelStage[] {
       label: 'Onboarding Form Submitted',
       count: clients.filter((c) => isCompleted(c.onboardingFormSubmitted))
         .length,
+    },
+    {
+      label: 'ITR In Progress',
+      count: clients.filter((c) => isCompleted(c.itrInProgress)).length,
+    },
+    {
+      label: 'Lodged',
+      count: clients.filter((c) => isCompleted(c.lodged)).length,
     },
   ];
 }

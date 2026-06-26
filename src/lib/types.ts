@@ -20,6 +20,8 @@ export type Client = {
   paymentReceived: string | null;
   onboardingFormSent: string | null;
   onboardingFormSubmitted: string | null;
+  itrInProgress: string | null;
+  lodged: string | null;
   status: string;
   notes: string;
   oneDriveFolderId: string;

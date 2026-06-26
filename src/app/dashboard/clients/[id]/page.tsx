@@ -36,6 +36,8 @@ const EVENT_DEFS: EventDef[] = [
     field: 'onboardingFormSubmitted',
     label: 'Client completed onboarding form',
   },
+  { field: 'itrInProgress', label: 'ITR in progress' },
+  { field: 'lodged', label: 'ITR lodged' },
 ];
 
 function buildEvents(c: Client): TimelineEvent[] {

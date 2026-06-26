@@ -54,10 +54,7 @@ export default async function DashboardPage() {
         <KPICard label="Replies" value={kpis.replies} />
         <KPICard label="Info Captured" value={kpis.formsSubmitted} />
         <KPICard label="Invoices Paid" value={kpis.invoicesPaid} />
-        <KPICard
-          label="Onboarding Form Submitted"
-          value={kpis.onboardingComplete}
-        />
+        <KPICard label="Lodged" value={kpis.lodged} />
       </section>
 
       {/* Pipeline funnel */}

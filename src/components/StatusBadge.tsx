@@ -12,6 +12,8 @@ const STATUS_STYLES: Record<string, string> = {
   'Lost - Manual Review': 'bg-danger-50 text-danger-700',
   'Onboarding Form Sent': 'bg-success-50 text-success-700',
   'Onboarding Form Submitted': 'bg-success-50 text-success-700',
+  'ITR In Progress': 'bg-info-50 text-info-700',
+  Lodged: 'bg-success-50 text-success-700',
 };
 
 const FALLBACK = 'bg-neutral-100 text-neutral-700';
