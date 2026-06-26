@@ -120,6 +120,20 @@ export function onboardingPending(clients: Client[]): ActionItem[] {
     .sort((a, b) => b.daysWaiting - a.daysWaiting);
 }
 
+/**
+ * Onboarding form completed, ITR being worked on, but not lodged yet.
+ * Measured from itrInProgress so the longest-waiting return surfaces first.
+ */
+export function itrAwaitingLodgement(clients: Client[]): ActionItem[] {
+  return clients
+    .filter((c) => isCompleted(c.itrInProgress) && !isCompleted(c.lodged))
+    .map((c) => ({
+      client: c,
+      daysWaiting: daysSince(c.itrInProgress) ?? 0,
+    }))
+    .sort((a, b) => b.daysWaiting - a.daysWaiting);
+}
+
 /* ------------------------------------------------------------------ */
 /* Reference-source breakdown                                          */
 /* ------------------------------------------------------------------ */

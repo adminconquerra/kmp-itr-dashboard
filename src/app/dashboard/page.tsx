@@ -6,6 +6,7 @@ import {
   awaitingCall,
   computeFunnel,
   computeKpis,
+  itrAwaitingLodgement,
   onboardingPending,
   paymentOverdue,
   type ActionItem,
@@ -70,7 +71,7 @@ export default async function DashboardPage() {
         <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.06em] text-neutral-500">
           Action Required
         </h2>
-        <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2 lg:grid-cols-4">
           <ActionList
             title="Awaiting Jimit's call"
             items={toListItems(awaitingCall(clients))}
@@ -82,6 +83,10 @@ export default async function DashboardPage() {
           <ActionList
             title="Onboarding form pending"
             items={toListItems(onboardingPending(clients))}
+          />
+          <ActionList
+            title="ITR awaiting lodgement"
+            items={toListItems(itrAwaitingLodgement(clients))}
           />
         </div>
       </Card>
