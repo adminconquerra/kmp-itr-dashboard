@@ -30,10 +30,7 @@ export function Timeline({ events }: { events: TimelineEvent[] }) {
         return (
           <li
             key={i}
-            className={cn(
-              'grid grid-cols-[80px_16px_1fr] gap-3',
-              !isLast && 'pb-6',
-            )}
+            className="grid grid-cols-[80px_16px_1fr] gap-3"
           >
             <time className="pt-0.5 text-xs tabular-nums text-neutral-500">
               {format(event.date, 'MMM d, yyyy')}
@@ -51,7 +48,9 @@ export function Timeline({ events }: { events: TimelineEvent[] }) {
                 aria-hidden
                 className="h-3 w-3 shrink-0 rounded-full bg-brand-500"
               />
-              {/* Bottom half — flex-1 fills remaining row + the 24px pb-6 below */}
+              {/* Bottom half — flex-1 fills the row, which now includes pb-6
+                  on the content cell, so this line meets the next row's top
+                  line edge-to-edge instead of leaving a 24px gap. */}
               <div
                 className={cn(
                   'w-px flex-1',
@@ -59,7 +58,7 @@ export function Timeline({ events }: { events: TimelineEvent[] }) {
                 )}
               />
             </div>
-            <div>
+            <div className={cn(!isLast && 'pb-6')}>
               <div className="text-sm font-semibold text-neutral-800">
                 {event.label}
               </div>
