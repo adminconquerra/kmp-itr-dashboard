@@ -39,21 +39,21 @@ export function Timeline({ events }: { events: TimelineEvent[] }) {
               {/* Top half of line — hidden for the very first event */}
               <div
                 className={cn(
-                  'h-2 w-px',
+                  'h-2 w-0.5',
                   isFirst ? 'bg-transparent' : 'bg-neutral-200',
                 )}
               />
-              {/* Dot */}
+              {/* Dot — nudged up 3px so it visually centers with the date text. */}
               <span
                 aria-hidden
-                className="h-3 w-3 shrink-0 rounded-full bg-brand-500"
+                className="-mt-[3px] h-3 w-3 shrink-0 rounded-full bg-brand-500"
               />
               {/* Bottom half — flex-1 fills the row, which now includes pb-6
                   on the content cell, so this line meets the next row's top
                   line edge-to-edge instead of leaving a 24px gap. */}
               <div
                 className={cn(
-                  'w-px flex-1',
+                  'w-0.5 flex-1',
                   isLast ? 'bg-transparent' : 'bg-neutral-200',
                 )}
               />
